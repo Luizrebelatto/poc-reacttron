@@ -1,17 +1,22 @@
 import Reactotron from "reactotron-react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-Reactotron.setAsyncStorageHandler(AsyncStorage)
+const reactotron = Reactotron
+  .setAsyncStorageHandler(AsyncStorage)
   .configure({
-    name: "React Native Demo",
+    name: "POC Reactotron",
   })
   .useReactNative({
-    asyncStorage: false,
+    asyncStorage: true,
     networking: {
       ignoreUrls: /symbolicate/,
     },
     editor: false,
-    errors: { veto: (stackFrame) => false },
+    errors: {
+      veto: () => false,
+    },
     overlay: false,
   })
   .connect();
+
+export default reactotron;
