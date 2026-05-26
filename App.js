@@ -1,11 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, TouchableOpacity } from 'react-native';
 
 export default function App() {
+  if (__DEV__) {
+    require("./ReactotronConfig");
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <TouchableOpacity onPress={() => console.log("CONECTADOS NO REACTTRON")}>
+        <Text>Test</Text>
+      </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
   );
