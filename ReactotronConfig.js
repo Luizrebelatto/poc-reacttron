@@ -19,4 +19,6 @@ const reactotron = Reactotron
   })
   .connect();
 
+console.tron = reactotron;
+
 export default reactotron;
