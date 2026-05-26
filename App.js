@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { Provider } from "react-redux";
+import { store } from "./src/store";
 
 import { setItemToStorage, getItemFromStorage } from './storage';
 
@@ -22,28 +24,30 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Digite um valor"
-        value={text}
-        onChangeText={setText}
-      />
+    <Provider store={store}>
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder="Digite um valor"
+          value={text}
+          onChangeText={setText}
+        />
 
-      <TouchableOpacity style={styles.button} onPress={handleSave}>
-        <Text style={styles.buttonText}>Adicionar no AsyncStorage</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={handleSave}>
+          <Text style={styles.buttonText}>Adicionar no AsyncStorage</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={handleGet}>
-        <Text style={styles.buttonText}>Buscar (get)</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={handleGet}>
+          <Text style={styles.buttonText}>Buscar (get)</Text>
+        </TouchableOpacity>
 
-      <Text style={styles.result}>
-        Valor salvo: {storedValue === null ? '—' : String(storedValue)}
-      </Text>
+        <Text style={styles.result}>
+          Valor salvo: {storedValue === null ? '—' : String(storedValue)}
+        </Text>
 
-      <StatusBar style="auto" />
-    </View>
+        <StatusBar style="auto" />
+      </View>
+    </Provider>
   );
 }
 
