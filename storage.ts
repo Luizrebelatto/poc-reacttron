@@ -28,6 +28,14 @@ export async function getItemFromStorage(key: string){
     }
 }
 
+export async function removeItemFromStorage(key: string){
+    try {
+        await AsyncStorage.removeItem(key)
+    } catch(error) {
+        console.tron.log(`removeItemFromStorage Error: ${error}`)
+    }
+}
+
 type StorageValue = string | number | boolean | object | null;
 
 export async function setItemToStorage(key: string, value: StorageValue){
@@ -51,4 +59,9 @@ export async function getUser(){
     console.tron.log('Name read:', name);
 
     return name;
+}
+
+export async function removeUser(){
+    await removeItemFromStorage("name")
+    console.tron.log('Name removed');
 }
